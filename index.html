@@ -1,128 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For Somya ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yay! 🎉</title>
 
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-}
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
 
-.container {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
-h1 { color: #ff4d6d; }
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
 
-button {
-    padding: 12px 25px;
-    margin: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
 
-.yes {
-    background: #28a745;
-    color: white;
-}
+        h1 {
+            color: #ff4d6d;
+            font-size: 32px;
+        }
 
-.no {
-    background: #dc3545;
-    color: white;
-    position: absolute;
-}
+        p {
+            font-size: 18px;
+            color: #444;
+        }
 
-#message {
-    margin-top: 15px;
-    color: #444;
-}
+        img {
+            width: 200px;
+            margin: 20px 0;
+        }
 
-/* Love Screen */
-#loveScreen {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #fff0f5;
-    top: 0;
-    left: 0;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-#loveScreen h1 {
-    font-size: 45px;
-    color: #e6005c;
-}
-
-/* Roses */
-.rose {
-    position: absolute;
-    font-size: 40px;
-}
-
-.top-left { top: 10px; left: 10px; }
-.top-right { top: 10px; right: 10px; }
-.bottom-left { bottom: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-
-</style>
+        #music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            border: none;
+            background: #ff4d6d;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1>Hey Somya (Chotu) 💖</h1>
-    <h2>Will you be my girlfriend?</h2>
+    <h1>Chotu 💖 you said YES! 🎉</h1>
 
-    <button class="yes" onclick="yesClick()">Yes ❤️</button>
-    <button class="no" id="noBtn" onclick="noClick()">No 😢</button>
+    <img src="https://media.tenor.com/eNHbizSfVb0AAAAj/lovemode-cute.gif" alt="cute gif">
 
-    <p id="message"></p>
+    <p>You just made me the happiest person alive 💕</p>
+    <p>I love you ❤️</p>
 </div>
 
-<!-- Final Screen -->
-<div id="loveScreen">
-    <div class="rose top-left">🌹</div>
-    <div class="rose top-right">🌹</div>
-    <div class="rose bottom-left">🌹</div>
-    <div class="rose bottom-right">🌹</div>
+<audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-    <h1>I Love You ❤️</h1>
-</div>
+<button id="music-toggle" onclick="toggleMusic()">🔊</button>
 
 <script>
-function noClick() {
-    document.getElementById("message").innerText = "plsss give me one chnaceeee 🥺";
+    // Confetti blast 🎉
+    confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 }
+    });
 
-    // Move button randomly
-    const btn = document.getElementById("noBtn");
-    const x = Math.random() * window.innerWidth * 0.6;
-    const y = Math.random() * window.innerHeight * 0.6;
+    // Music control
+    const music = document.getElementById("bg-music");
+    let playing = false;
 
-    btn.style.left = x + "px";
-    btn.style.top = y + "px";
-}
-
-function yesClick() {
-    document.getElementById("loveScreen").style.display = "flex";
-}
+    function toggleMusic() {
+        if (!playing) {
+            music.play();
+            playing = true;
+        } else {
+            music.pause();
+            playing = false;
+        }
+    }
 </script>
 
 </body>
